@@ -94,6 +94,20 @@ def normalize_csv(in_file, out_file):
     """Parse input CSV file, normalize, and write to output CSV file."""
     reader = csv.DictReader(in_file)
     writer = csv.writer(out_file)
+
+    # Write CSV header.
+    writer.writerow([
+        'Timestamp',
+        'Address',
+        'ZIP',
+        'FullName',
+        'FooDuration',
+        'BarDuration',
+        'TotalDuration',
+        'Notes',
+    ])
+
+    # Parse and write CSV body.
     for row in reader:
         try:
             writer.writerow(normalize_row(row))
